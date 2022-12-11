@@ -56,8 +56,14 @@ function App () {
 
 
       <Text style={styles.text}> {name} is a mobile developer with kotlin, flutter and   {session.title}. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
+
+      <View style = {styles.button2}>
+          <Button title='Click me' onPress={()=> {Linking.openURL('https://reactnative.dev/')}}></Button>
+      </View>
+
+      <View style = {styles.button1}>
+          <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
+      </View>
     </View>
   )
 }
@@ -75,13 +81,20 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontStyle:'italic',
     marginLeft: 20,
-    marginEnd: 20
+    marginEnd: 20,
+    marginTop: 10
   },
 
-  buttons:{
-    width: 100,
+  button1:{
+    width: 200,
     height: 100,
-    marginTop: 50
+    marginTop: 10
+  },
+
+  button2:{
+    width: 200,
+    height: 100,
+    marginTop: 30
   },
 });
 
