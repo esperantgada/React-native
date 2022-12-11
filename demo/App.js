@@ -27,37 +27,23 @@ function countInitial(){
 
 function App () {
 
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 17, title: 'React Native'})
-  const [name, setName] = useState('Esperant')
-
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
-  }
-
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
-
-  function handleUpdate(){
-    setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
-  }
 
   return (
 
    <View style = {styles.body}>
 
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
+      <View style = {styles.one}>
+          <Text style={styles.text}> 1 </Text>
+      </View>
 
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
+      <View style = {styles.two}>
+          <Text style={styles.text}> 2 </Text>
+      </View>
 
+      <View style = {styles.three}>
+          <Text style={styles.text}> 3 </Text>
+      </View>
 
-      <Text style={styles.text}> {name} is an Android developer and is going to be {session.title}. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
     </View>
   )
 }
@@ -65,17 +51,50 @@ function App () {
 const styles = StyleSheet.create({
   
   body:{
-      alignItems:'center',
-      flex:1,
-      justifyContent:'center'
+    backgroundColor: '#0000ff',
+    flexDirection: 'row',
+    flex: 1,
+    alignItems:'center',
+    justifyContent:'space-between'
   },
 
   text:{
+    color:'#000000',
+    fontSize: 40,
+    fontStyle:'italic'
+  },
 
-    fontSize: 24,
-    fontStyle:'italic',
-    marginLeft: 20,
-    marginEnd: 20
+  one:{
+    width: 100,
+    height: 100,
+    flex: 1,
+    margin: 6,
+    backgroundColor: '#00ffff',
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+
+  two:{
+    width: 100,
+    height: 100,
+    flex: 1,
+    margin: 6,
+    backgroundColor: '#fff000',
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+
+  three:{
+    width: 100,
+    height: 100,
+    flex: 1,
+    margin: 6,
+    backgroundColor: '#ff00ff',
+    alignItems: 'center',
+    justifyContent: 'center'
+
   },
 
   buttons:{
