@@ -28,7 +28,7 @@ function countInitial(){
 function App () {
 
   const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 17, title: 'React Native'})
+  const [session, setSession]= useState({number: 97756877, title: 'React Native'})
   const [name, setName] = useState('Esperant')
 
   function decrementCount(){
@@ -55,7 +55,7 @@ function App () {
       <Text style={styles.text}>You clicked {count} times the button.</Text>
 
 
-      <Text style={styles.text}> {name} is an Android developer and is going to be {session.title}. His number is {session.number}</Text>
+      <Text style={styles.text}> {name} is a  {session.title} developer. His number is {session.number}</Text>
       <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
       <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
     </View>
