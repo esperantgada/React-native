@@ -27,37 +27,20 @@ function countInitial(){
 
 function App () {
 
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 17, title: 'React Native'})
   const [name, setName] = useState('Esperant')
 
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
-  }
-
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
 
   function handleUpdate(){
     setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
   }
 
   return (
 
    <View style = {styles.body}>
 
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
+      <Text style={styles.text}> I'm {name}.</Text>
 
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
-
-
-      <Text style={styles.text}> {name} is an Android developer and is going to be {session.title}. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
+      <View style= {styles.buttons}><Button title='Update value' onPress={handleUpdate} ></Button></View>
     </View>
   )
 }
@@ -65,21 +48,27 @@ function App () {
 const styles = StyleSheet.create({
   
   body:{
+      width: '100%',
+      height: '50%',
       alignItems:'center',
-      flex:1,
-      justifyContent:'center'
+      backgroundColor: '#ffffff',
+      //flex:1,
+      justifyContent:'center',
+      borderWidth: 10,
+      borderColor: '#ff00ff',
+      borderRadius: 20,
   },
 
   text:{
-
-    fontSize: 24,
+    fontSize: 50,
     fontStyle:'italic',
     marginLeft: 20,
-    marginEnd: 20
+    marginEnd: 20,
+    textTransform: 'uppercase',
   },
 
   buttons:{
-    width: 100,
+    width: '60%',
     height: 100,
     marginTop: 50
   },
