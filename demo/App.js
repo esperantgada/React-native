@@ -6,83 +6,168 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 
-import {
-  Button,
-  Linking,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-
-function countInitial(){
-  console.log('Run function')
-  return 0
-}
-
-function App () {
-
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 17, title: 'React Native'})
-  const [name, setName] = useState('Esperant')
-
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
-  }
-
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
-
-  function handleUpdate(){
-    setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
-  }
-
-  return (
-
-   <View style = {styles.body}>
-
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
-
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
+ import {
+   Button,
+   Linking,
+   StyleSheet,
+   Text,
+   View
+ } from 'react-native';
+ 
+ 
+ /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
+  * LTI update could not be added via codemod */
+ 
+ function countInitial(){
+   console.log('Run function')
+   return 0
+ }
+ 
+ function App () {
+ 
+ 
+   return (
+ 
+    <View style = {styles.body}>
+ 
+       <View style = {styles.view1}>
+            <View style = {styles.one}>
+                <Text style={styles.text}> 1 </Text>
+            </View>
+      
+            <View style = {styles.two}>
+                <Text style={styles.text}> 2 </Text>
+            </View>
+      
+            <View style = {styles.three}>
+                <Text style={styles.text}> 3 </Text>
+            </View>
+       </View>
 
 
-      <Text style={styles.text}> {name} is an Android developer and is going to be {session.title}. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
-    </View>
-  )
-}
+       <View style = {styles.view2}>
+            <View style = {styles.four}>
+                <Text style={styles.text}> 4 </Text>
+            </View>
+      
+            <View style = {styles.five}>
+                <Text style={styles.text}> 5 </Text>
+            </View>
+       </View>
 
-const styles = StyleSheet.create({
-  
-  body:{
-      alignItems:'center',
-      flex:1,
-      justifyContent:'center'
+
+       <View style = {styles.view3}>
+            <View style = {styles.six}>
+                <Text style={styles.text}> 6 </Text>
+            </View>
+
+            <View style = {styles.seven}>
+                <Text style={styles.text}> 7 </Text>
+            </View>
+       </View>
+ 
+     </View>
+   )
+ }
+ 
+ const styles = StyleSheet.create({
+   
+   body:{
+    flex: 1,
+     flexDirection: 'column',
+     alignItems:'center',
+     justifyContent:'flex-start'
+   },
+ 
+   text:{
+     color:'#000000',
+     fontSize: 40,
+     fontStyle:'italic'
+   },
+ 
+   one:{
+     flex: 1,
+     backgroundColor: '#00ffff',
+     alignItems: 'center',
+     justifyContent: 'center'
+ 
+   },
+ 
+   two:{
+     flex: 2,
+     backgroundColor: '#fff000',
+     alignItems: 'center',
+     justifyContent: 'center'
+ 
+   },
+ 
+   three:{
+     flex: 3,
+     backgroundColor: '#ff00ff',
+     alignItems: 'center',
+     justifyContent: 'center'
+ 
+   },
+
+
+   four:{
+    backgroundColor: '#ff0000',
+    alignItems: 'center',
+    justifyContent: 'center'
+
   },
 
-  text:{
+  five:{
+    backgroundColor: '#00ff00',
+    alignItems: 'center',
+    justifyContent: 'center'
 
-    fontSize: 24,
-    fontStyle:'italic',
-    marginLeft: 20,
-    marginEnd: 20
   },
 
-  buttons:{
-    width: 100,
-    height: 100,
-    marginTop: 50
-  },
-});
+  six:{
+    flex: 1,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center'
 
-export default App;
+  },
+
+  seven:{
+    flex: 1,
+    backgroundColor: '#0040ff',
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+
+  view1:{
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+
+  },
+
+
+  view2:{
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'center'
+
+  },
+
+
+  view3:{
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'center'
+
+  },
+ 
+ });
+ 
+ export default App;
+ 
