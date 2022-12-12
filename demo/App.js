@@ -9,8 +9,8 @@
 import React, {useState} from 'react';
 
 import {
-  Button,
-  Linking,
+  RefreshControl,
+  ScrollView,
   StyleSheet,
   Text,
   View
@@ -20,69 +20,88 @@ import {
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
-function countInitial(){
-  console.log('Run function')
-  return 0
-}
 
 function App () {
 
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 97756877, title: 'React Native'})
-  const [name, setName] = useState('Esperant')
+  const [refresh, setRefresh] = useState(false)
 
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
+
+  //The three dot here mean "the following items"
+  //When page refreshes, it will add these three items
+
+  const onRefreshView = () => {
+    setRefresh(true)
+    setItem([...items, {key: 19, item: 'item 19'}, {key: 20, item: 'item 20'}, {key: 21, item: 'item 21'}])
+    setRefresh(false)
   }
 
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
 
-  function handleUpdate(){
-    setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
-  }
+  //A list of item predefined using useSate
+  const [items, setItem] = useState([
+    {key: 1, item: 'item 1'},
+    {key: 2, item: 'item 2'},
+    {key: 3, item: 'item 3'},
+    {key: 4, item: 'item 4'},
+    {key: 5, item: 'item 5'},
+    {key: 6, item: 'item 6'},
+    {key: 7, item: 'item 7'},
+    {key: 8, item: 'item 8'},
+    {key: 9, item: 'item 9'},
+    {key: 10, item: 'item 10'},
+    {key: 11, item: 'item 11'},
+    {key: 12, item: 'item 12'},
+    {key: 13, item: 'item 13'},
+    {key: 14, item: 'item 14'},
+    {key: 15, item: 'item 15'},
+    {key: 16, item: 'item 16'},
+    {key: 17, item: 'item 17'},
+    {key: 18, item: 'item 18'}
+    
+  ])
 
   return (
 
-   <View style = {styles.body}>
+    //ScrollView with refreshControl
+   <ScrollView style = {styles.body} refreshControl = {<RefreshControl refreshing = {refresh} onRefresh = {onRefreshView}/>}>
 
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
-
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
-
-
-      <Text style={styles.text}> {name} is a  {session.title} developer. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
-    </View>
-  )
+     {
+      items.map((i) => {
+        return (
+          <View style = {styles.item} key = {i.key}>
+          <Text style = {styles.text}> {i.item}</Text>
+      </View>
+        )
+      }
+      )
+     }
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
   
   body:{
-      alignItems:'center',
       flex:1,
-      justifyContent:'center'
+      backgroundColor: '#ffffff',
+      flexDirection: 'column',
   },
 
   text:{
-
-    fontSize: 24,
+    color: '#000000',
+    fontSize: 40,
     fontStyle:'italic',
-    marginLeft: 20,
-    marginEnd: 20
+    margin: 10
   },
 
-  buttons:{
-    width: 100,
-    height: 100,
-    marginTop: 50
-  },
+
+  item:{
+    backgroundColor: '#4ae1fa',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10
+  }
+
 });
 
 export default App;
