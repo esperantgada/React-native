@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
 
   text:{
-
     fontSize: 24,
     fontStyle:'italic',
     marginLeft: 20,
