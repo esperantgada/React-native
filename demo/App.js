@@ -56,7 +56,7 @@ function App () {
 
 
       <Text style={styles.text}> {name} is a  {session.title} developer. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://www.youtube.com/watch?v=ANdSdIlgsEw&list=PL8kfZyp--gEXs4YsSLtB3KqDtdOFHMjWZ')}}></Button>
+      <Button title='Click me' onPress={()=> {Linking.openURL('https://reactnative.dev/')}}></Button>
       <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
     </View>
   )
