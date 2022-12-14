@@ -33,22 +33,34 @@
  
    const onRefreshView = () => {
      setRefresh(true)
-     setItem([...items,     {
-      title : 'Title 2',
-      data : ['Item 2-1', 'Item 2-2', 'Item 2-3', 'Item 2-4'],
-    },])
+     setItem([...items, refresh_data])
      setRefresh(false)
    }
- 
- 
-   //A list of item predefined using useSate
-   const [items, setItem] = useState([
+
+
+
+   //When users refresh the page, this data will be shown
+
+    const refresh_data = 
+      {
+        title : 'Title 2',
+        data : ['Item 2-1', 'Item 2-2', 'Item 2-3', 'Item 2-4'],
+      }
+
+
+   const main_data = [
     {
       title : 'Title 1',
       data : ['Item 1-1', 'Item 1-2', 'Item 1-3', 'Item 1-4'],
-    }
+    },
 
- ]);
+ ]
+ 
+ 
+   //A list of item predefined using useSate
+   const [items, setItem] = useState(main_data);
+
+ 
 
  
    return (
@@ -56,14 +68,16 @@
     <SectionList
         keyExtractor = {(item, index) => index.toString()}
 
-        sections = {DATA}
+        sections = {items}
         renderItem = {({item}) => (
-           <Text style = {styles.text}> {item}</Text>
+           <View style = {styles.item}>
+                <Text style = {styles.text}> {item}</Text>
+           </View>
       
         )}
 
         renderSectionHeader = {({section}) =>(
-          <View style = {styles.item}>
+          <View style = {styles.header_item}>
               <Text style = {styles.text}> {section.title}</Text>
           </View>
         )}
@@ -91,17 +105,27 @@
      color: '#000000',
      fontSize: 40,
      fontStyle:'italic',
-     margin: 10
+     margin: 10,
+     justifyContent: 'center',
+     alignItems: 'center',
+     flex: 1
    },
  
  
-   item:{
+   header_item:{
      backgroundColor: '#4ae1fa',
      borderRadius: 10,
      justifyContent: 'center',
      alignItems: 'center',
-     margin: 10
-   }
+     margin: 20
+   },
+
+
+   item:{
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+
  
  });
  
