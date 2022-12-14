@@ -6,83 +6,104 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 
-import {
-  Button,
-  Linking,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+ import {
+   FlatList,
+   RefreshControl,
+   ScrollView,
+   SectionList,
+   StyleSheet,
+   Text,
+   View
+ } from 'react-native';
+ 
+ 
+ /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
+  * LTI update could not be added via codemod */
+ 
+ 
+ function App () {
+ 
+   const [refresh, setRefresh] = useState(false)
+ 
+ 
+   //The three dot here mean "the following items"
+   //When page refreshes, it will add these three items
+ 
+   const onRefreshView = () => {
+     setRefresh(true)
+     setItem([...items,     {
+      title : 'Title 2',
+      data : ['Item 2-1', 'Item 2-2', 'Item 2-3', 'Item 2-4'],
+    },])
+     setRefresh(false)
+   }
+ 
+ 
+   //A list of item predefined using useSate
+   const [items, setItem] = useState([
+    {
+      title : 'Title 1',
+      data : ['Item 1-1', 'Item 1-2', 'Item 1-3', 'Item 1-4'],
+    }
 
+ ]);
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
+ 
+   return (
 
-function countInitial(){
-  console.log('Run function')
-  return 0
-}
+    <SectionList
+        keyExtractor = {(item, index) => index.toString()}
 
-function App () {
+        sections = {DATA}
+        renderItem = {({item}) => (
+           <Text style = {styles.text}> {item}</Text>
+      
+        )}
 
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 97756877, title: 'React Native'})
-  const [name, setName] = useState('Esperant')
+        renderSectionHeader = {({section}) =>(
+          <View style = {styles.item}>
+              <Text style = {styles.text}> {section.title}</Text>
+          </View>
+        )}
 
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
-  }
-
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
-
-  function handleUpdate(){
-    setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
-  }
-
-  return (
-
-   <View style = {styles.body}>
-
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
-
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
-
-
-      <Text style={styles.text}> {name} is a  {session.title} developer. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://reactnative.dev/')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  
-  body:{
-      alignItems:'center',
-      flex:1,
-      justifyContent:'center'
-  },
-
-  text:{
-
-    fontSize: 24,
-    fontStyle:'italic',
-    marginLeft: 20,
-    marginEnd: 20
-  },
-
-  buttons:{
-    width: 100,
-    height: 100,
-    marginTop: 50
-  },
-});
-
-export default App;
+        refreshControl = {
+        <RefreshControl refreshing = {refresh} 
+            onRefresh = {onRefreshView} 
+            colors = {['#ff00ff']}
+        />}
+    
+    />
+ 
+   );
+ }
+ 
+ const styles = StyleSheet.create({
+   
+   body:{
+       flex:1,
+       backgroundColor: '#ffffff',
+       flexDirection: 'column',
+   },
+ 
+   text:{
+     color: '#000000',
+     fontSize: 40,
+     fontStyle:'italic',
+     margin: 10
+   },
+ 
+ 
+   item:{
+     backgroundColor: '#4ae1fa',
+     borderRadius: 10,
+     justifyContent: 'center',
+     alignItems: 'center',
+     margin: 10
+   }
+ 
+ });
+ 
+ export default App;
+ 
