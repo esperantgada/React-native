@@ -13,6 +13,7 @@ import {
   Linking,
   StyleSheet,
   Text,
+  TextInput,
   View
 } from 'react-native';
 
@@ -20,44 +21,28 @@ import {
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
-function countInitial(){
-  console.log('Run function')
-  return 0
-}
 
 function App () {
 
-  const [count, setCount] = useState(() => countInitial())
-  const [session, setSession]= useState({number: 97756877, title: 'React Native'})
-  const [name, setName] = useState('Esperant')
-
-  function decrementCount(){
-    setCount(preViewCount => preViewCount - 1)
-  }
-
-  function incrementCount(){
-    setCount(preViewCount => preViewCount + 1)
-  }
-
-  function handleUpdate(){
-    setName('Esperant GADA')
-    setSession({number: 45, title: 'Programmer'})
-  }
+  const [name, setName] = useState('');
 
   return (
 
    <View style = {styles.body}>
 
-      <Button style={styles.buttons} title='-' onPress={decrementCount}></Button>
-      <Text style={styles.text}>{count}</Text>
-      <Button title='+' onPress={incrementCount} style={styles.buttons}></Button>
+      <Text style = {styles.text}> Please, write your name here:</Text>
 
-      <Text style={styles.text}>You clicked {count} times the button.</Text>
+      <TextInput style = {styles.inputText} 
+        //multiline
+        //maxLength={10}
+        placeholder = 'e.g. Esperant'
+        onChangeText={(value) => setName(value)}
+        secureTextEntry
+        />
 
 
-      <Text style={styles.text}> {name} is a  {session.title} developer. His number is {session.number}</Text>
-      <Button title='Click me' onPress={()=> {Linking.openURL('https://reactnative.dev/')}}></Button>
-      <Button title='Update value' onPress={handleUpdate} style= {styles.buttons}></Button>
+      <Text style = {styles.text}> Your name is: {name}</Text>
+
     </View>
   )
 }
@@ -65,24 +50,27 @@ function App () {
 const styles = StyleSheet.create({
   
   body:{
-      alignItems:'center',
+      backgroundColor: '#ffffff',
       flex:1,
-      justifyContent:'center'
+      alignItems: 'center'
   },
 
   text:{
-
-    fontSize: 24,
+    color: '#000000',
+    fontSize: 26,
     fontStyle:'italic',
-    marginLeft: 20,
-    marginEnd: 20
+    margin: 20
   },
 
-  buttons:{
-    width: 100,
-    height: 100,
-    marginTop: 50
-  },
+  inputText: {
+    width: 220,
+    borderWidth: 1,
+    borderColor: '#555',
+    borderRadius: 5,
+    fontSize: 20,
+    textAlign: 'center'
+  }
+
 });
 
 export default App;
